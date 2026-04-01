@@ -3,21 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Frontend</title>
+    <title>ShopHub - Your Online Shopping Destination</title>
     <link rel="stylesheet" href="styles/main.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Online Store</h1>
+    <!-- HEADER SECTION -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>ShopHub</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                        <li class="nav-item"><a href="#categories" class="nav-link">Categories</a></li>
+                        <li class="nav-item"><a href="#deals" class="nav-link">Deals</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Right Side Elements -->
+                <div class="header-actions">
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <input type="text" class="search-input" placeholder="Search products...">
+                        <button class="search-btn" aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- User Account -->
+                    <a href="#account" class="icon-btn" aria-label="Account">
+                        <i class="fas fa-user"></i>
+                    </a>
+
+                    <!-- Wishlist -->
+                    <a href="#wishlist" class="icon-btn" aria-label="Wishlist">
+                        <i class="fas fa-heart"></i>
+                        <span class="badge">3</span>
+                    </a>
+
+                    <!-- Shopping Cart -->
+                    <a href="#cart" class="icon-btn cart-btn" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge cart-count">5</span>
+                    </a>
+
+                    <!-- Hamburger Menu (Mobile) -->
+                    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                <span>ShopHub</span>
+            </div>
+            <button class="close-btn" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="#home" class="mobile-nav-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#products" class="mobile-nav-link"><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="#categories" class="mobile-nav-link"><i class="fas fa-th-large"></i> Categories</a></li>
+            <li><a href="#deals" class="mobile-nav-link"><i class="fas fa-tags"></i> Deals</a></li>
+            <li><a href="#about" class="mobile-nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="#contact" class="mobile-nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <a href="#account" class="mobile-action-btn">
+                <i class="fas fa-user"></i> My Account
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="hero-background"></div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <!-- Left Side: Text Content -->
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <i class="fas fa-star"></i>
+                            <span>New Collection 2026</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            Discover Your
+                            <span class="highlight">Perfect Style</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Explore our latest collection of premium products. 
+                            Get up to <strong>50% off</strong> on selected items. 
+                            Free shipping on orders over $50!
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-box"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">10K+</span>
+                                    <span class="stat-label">Products</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">50K+</span>
+                                    <span class="stat-label">Customers</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">4.9</span>
+                                    <span class="stat-label">Rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-buttons">
+                            <a href="#products" class="btn btn-primary">
+                                <span>Shop Now</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#categories" class="btn btn-secondary">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Watch Video</span>
+                            </a>
+                        </div>
+                        
+                        <div class="hero-features">
+                            <div class="feature-item">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Shipping</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-undo"></i>
+                                <span>Easy Returns</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Secure Payment</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Image/Visual -->
+                    <div class="hero-visual">
+                        <div class="hero-image-container">
+                            <!-- Placeholder for product images -->
+                            <div class="hero-image main-image">
+                                <div class="product-card-hero">
+                                    <div class="product-image-placeholder">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <div class="product-badge">New</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating product cards -->
+                            <div class="floating-card card-1">
+                                <i class="fas fa-heart"></i>
+                                <span>Trending</span>
+                            </div>
+                            
+                            <div class="floating-card card-2">
+                                <i class="fas fa-tags"></i>
+                                <span>50% Off</span>
+                            </div>
+                            
+                            <div class="floating-card card-3">
+                                <i class="fas fa-truck"></i>
+                                <span>Fast Delivery</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Decorative elements -->
+                        <div class="hero-decoration decoration-1"></div>
+                        <div class="hero-decoration decoration-2"></div>
+                        <div class="hero-decoration decoration-3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Featured Categories Preview -->
+        <section class="featured-categories" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Shop by Category</h2>
+                    <p>Explore our wide range of products</p>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <i class="fas fa-tshirt"></i>
+                        <h3>Fashion</h3>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Electronics</h3>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-home"></i>
+                        <h3>Home & Living</h3>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-football-ball"></i>
+                        <h3>Sports</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <script src="scripts/app.js"></script>
 </body>
 </html>
-🔹 Open styles/main.css and add basic styles:
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
