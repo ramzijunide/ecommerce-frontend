@@ -1,62 +1,65 @@
-console.log("E-Commerce Website Loaded");
-
 const productGrid = document.getElementById("productGrid");
 
-// Run only if product section exists
+initCartCount();
+
 if (productGrid) {
-    fetchProducts();
+    productGrid.innerHTML = "Loading...";
+
+    fetch("https://fakestoreapi.com/products")
+        .then(res => res.json())
+        .then(data => {
+            productGrid.innerHTML = "";
+
+            data.forEach(p => {
+                const card = document.createElement("div");
+                card.classList.add("product-card");
+
+                card.innerHTML = `
+                    <a href="product.html?id=${p.id}">
+                        <img src="${p.image}">
+                    </a>
+                    <h3>${p.title.substring(0, 40)}...</h3>
+                    <p class="price">$${p.price}</p>
+                    <button onclick='addToCart(${JSON.stringify(p)})'>Add to Cart</button>
+                `;
+
+                productGrid.appendChild(card);
+            });
+        });
 }
 
-// MAIN FUNCTION
-async function fetchProducts() {
-    try {
-        // 1️⃣ Loading State
-        productGrid.innerHTML = "<p>Loading products...</p>";
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        // 2️⃣ Fetch API Data
-        const response = await fetch("https://fakestoreapi.com/products");
+    const existing = cart.find(item => item.id === product.id);
 
-        // Check if response is OK
-        if (!response.ok) {
-            throw new Error("API request failed");
-        }
-
-        const products = await response.json();
-
-        // 3️⃣ Display Products
-        displayProducts(products);
-
-    } catch (error) {
-        // 5️⃣ Error Handling
-        console.error("Error fetching products:", error);
-        productGrid.innerHTML = "<p>Failed to load products. Please try again.</p>";
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
     }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to cart!");
+    updateCartCount();
 }
 
-// FUNCTION TO DISPLAY PRODUCTS
-function displayProducts(products) {
-    productGrid.innerHTML = "";
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.classList.add("product-card");
-
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.title}" loading="lazy">
-            <h3>${product.title.substring(0, 50)}...</h3>
-            <p class="price">$${product.price}</p>
-            <p class="desc">${product.description.substring(0, 80)}...</p>
-            <button onclick="addToCart()">Add to Cart</button>
-        `;
-
-        productGrid.appendChild(card);
+    document.querySelectorAll(".cart-count").forEach(el => {
+        el.textContent = total;
     });
 }
 
-// CART FUNCTION
-let cartCount = 5;
-
-function addToCart() {
-    cartCount++;
-    document.querySelector(".cart-count").textContent = cartCount;
+function initCartCount() {
+    updateCartCount();
 }
